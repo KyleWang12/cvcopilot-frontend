@@ -153,7 +153,7 @@ export default function SignUp() {
                                     setIsError(false);
                                 }}
                             />
-                            {isError && <FormHelperText error>Passwords don't match</FormHelperText>}
+                            {isError && <FormHelperText error>Passwords do not match</FormHelperText>}
                         </Grid>
                     </Grid>
                     <Collapse in={showWarning} sx={{
