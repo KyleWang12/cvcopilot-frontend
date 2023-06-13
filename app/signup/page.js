@@ -23,12 +23,12 @@ import { useRouter } from 'next/navigation'
 function Copyright(props) {
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {'Copyright © '}
+            {'Copyright &copy; '}
             <Link color="inherit" href="https://mui.com/">
                 CVCopilot
             </Link>{' '}
             {new Date().getFullYear()}
-            {'.'}
+            {'&#46;'}
         </Typography>
     );
 }
