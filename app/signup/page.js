@@ -18,20 +18,8 @@ import Collapse from '@mui/material/Collapse';
 import Alert from '@mui/material/Alert';
 import Server from '../config';
 
-import { useRouter } from 'next/navigation'
-
-function Copyright(props) {
-    return (
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {'Copyright &copy; '}
-            <Link color="inherit" href="https://mui.com/">
-                CVCopilot
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'&#46;'}
-        </Typography>
-    );
-}
+import { useRouter } from 'next/navigation';
+import Copyright from '../components/Copyright';
 
 export default function SignUp() {
 
@@ -85,11 +73,16 @@ export default function SignUp() {
     };
 
     return (
-        <Container component="main" maxWidth="xs">
+        <Container component="main" maxWidth="xs" sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100vh', 
+        }}>
             <CssBaseline />
             <Box
                 sx={{
-                    marginTop: 8,
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',

@@ -21,19 +21,7 @@ import Server from '../config';
 
 import { useRouter } from 'next/navigation';
 import { set } from 'zod';
-
-function Copyright(props) {
-    return (
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {'Copyright &copy; '}
-            <Link color="inherit" href="https://mui.com/">
-                CVCopilot
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'&#46;'}
-        </Typography>
-    );
-}
+import Copyright from '../components/Copyright';
 
 export default function Login() {
 
@@ -46,6 +34,13 @@ export default function Login() {
     const [password, setPassword] = React.useState("");
     const [emailError, setEmailError] = React.useState(false);
     const [passwordError, setPasswordError] = React.useState(false);
+
+    React.useEffect(() => {
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (user) {
+            router.push('/');
+        }
+    }, []);
 
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
@@ -90,17 +85,22 @@ export default function Login() {
             setShowWarning(true);
             return;
         }
-        localStorage.setItem('token', body.token);
+        localStorage.setItem('user', JSON.stringify(body));
         setShowWarning(false);
-        router.push('/profile');
+        router.push('/');
     };
 
     return (
-        <Container component="main" maxWidth="xs">
+        <Container component="main" maxWidth="xs" sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100vh', 
+        }}>
             <CssBaseline />
             <Box
                 sx={{
-                    marginTop: 8,
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
