@@ -57,21 +57,28 @@ export default function ResponsiveHeader() {
         if (event.target.innerText === 'Logout') {
             localStorage.removeItem('user');
             setUser(null);
+            router.push('/login');
         } else if (event.target.innerText === 'Profile') {
             router.push('/profile');
         }
     };
 
     return (
-        <Box sx={{ borderBottom: 1, borderColor: 'divider' }} >
-            <AppBar position="static" sx={{ backgroundColor: '#fafafa' }} elevation={0}>
+        <Box sx={{
+            position: 'sticky',
+            top: 0,
+            zIndex: 1,
+        }} >
+            <AppBar sx={{
+                backgroundColor: '#fafafa',
+                borderBottom: '1px solid #dbdbdb',
+            }} elevation={0}>
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
                         <Typography
                             variant="h6"
                             noWrap
                             component="a"
-                            href="/"
                             sx={{
                                 mr: 2,
                                 display: { xs: 'none', md: 'flex' },
@@ -125,16 +132,17 @@ export default function ResponsiveHeader() {
                             variant="h5"
                             noWrap
                             component="a"
-                            href=""
                             sx={{
-                                mr: 2,
+                                // mr: 2,
                                 display: { xs: 'flex', md: 'none' },
-                                flexGrow: 1,
+                                width: '100%',
                                 fontFamily: 'monospace',
                                 fontWeight: 700,
                                 letterSpacing: '.1rem',
                                 color: '#000000',
                                 textDecoration: 'none',
+                                justifyContent: 'center',
+                                alignItems: 'center',
                             }}
                         >
                             CVCopilot
@@ -168,7 +176,7 @@ export default function ResponsiveHeader() {
                                             mr: 0.1,
                                             display: { xs: 'none', md: 'flex' }
                                         }}
-                                        
+
                                     >
                                         {user.email}
                                     </Typography>
@@ -189,7 +197,7 @@ export default function ResponsiveHeader() {
                                 :
                                 <Button
                                     onClick={handleLogin}
-                                    sx={{ color: '#3b3b3b', display: 'block' }}
+                                    sx={{ color: '#3b3b3b', display: 'block', pb: '3px' }}
                                 >
                                     Login
                                 </Button>
