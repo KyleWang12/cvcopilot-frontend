@@ -5,8 +5,9 @@ import { useRouter } from 'next/navigation';
 import ResponsiveHeader from '../components/ResponsiveHeader';
 import { getProfile } from '../utils/getProfile';
 import EducationSection from './EducationSection';
-// import WorkSection from './WorkSection';
-// import ProjectSection from './ProjectSection';
+import WorkSection from './WorkSection';
+import ProjectSection from './ProjectSection';
+import Footer from '../components/Footer';
 
 export default function Profile() {
     const router = useRouter();
@@ -32,7 +33,7 @@ export default function Profile() {
                     bgcolor: '#fafafa',
                     overflow: 'auto',
                     minHeight: '100vh',
-                    mb: 2,
+                    // mb: 2,
                 }}>
                     <CssBaseline />
                     <ResponsiveHeader />
@@ -55,11 +56,12 @@ export default function Profile() {
                                 flexGrow: 2,
                             }}>
                                 <EducationSection educations={profile.educations} />
-                                {/* <WorkSection workExperiences={profile.workExperiences} /> */}
-                                {/* <ProjectSection projects={profile.projects} /> */}
+                                <WorkSection workExperience={profile.workExperiences} />
+                                <ProjectSection projects={profile.projects} />
                             </Box>
                         </Box>
                     </Box>
+                    <Footer />
                 </Box>
             }
         </Box>

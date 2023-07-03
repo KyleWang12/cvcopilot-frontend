@@ -69,25 +69,29 @@ export default function Login() {
             return;
         }
         const data = new FormData(event.currentTarget);
-        const response = await fetch(Server + '/api/auth/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                email: data.get('email'),
-                password: data.get('password'),
-                rememberMe: rememberMe,
-            }),
-        });
-        const body = await response.json();
-        if (response.status !== 200) {
-            setShowWarning(true);
-            return;
+        try {
+            const response = await fetch(Server + '/api/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: data.get('email'),
+                    password: data.get('password'),
+                    rememberMe: rememberMe,
+                }),
+            });
+            const body = await response.json();
+            if (response.status !== 200) {
+                setShowWarning(true);
+                return;
+            }
+            localStorage.setItem('user', JSON.stringify(body));
+            setShowWarning(false);
+            router.push('/');
+        } catch (error) {
+            console.log(error);
         }
-        localStorage.setItem('user', JSON.stringify(body));
-        setShowWarning(false);
-        router.push('/');
     };
 
     return (
@@ -96,7 +100,7 @@ export default function Login() {
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
-            height: '100vh', 
+            height: '100vh',
         }}>
             <CssBaseline />
             <Box
