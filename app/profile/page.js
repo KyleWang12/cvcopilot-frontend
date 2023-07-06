@@ -7,6 +7,7 @@ import { getProfile } from '../utils/getProfile';
 import EducationSection from './EducationSection';
 import WorkSection from './WorkSection';
 import ProjectSection from './ProjectSection';
+import SkillSection from './SkillSection';
 import Footer from '../components/Footer';
 
 export default function Profile() {
@@ -30,7 +31,7 @@ export default function Profile() {
         <Box>
             {profile &&
                 <Box sx={{
-                    bgcolor: '#fafafa',
+                    // bgcolor: '#fafafa',
                     overflow: 'auto',
                     minHeight: '100vh',
                     // mb: 2,
@@ -58,6 +59,7 @@ export default function Profile() {
                                 <EducationSection educations={profile.educations} />
                                 <WorkSection workExperience={profile.workExperiences} />
                                 <ProjectSection projects={profile.projects} />
+                                <SkillSection skills={profile.skills} />
                             </Box>
                         </Box>
                     </Box>

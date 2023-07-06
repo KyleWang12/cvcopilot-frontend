@@ -19,8 +19,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { useRouter } from 'next/navigation';
 
-const pages = ['Dashboard'];
-const settings = ['Profile', 'Logout'];
+const pages = ['CV-Builder'];
+const settings = ['Profile','Task Queue', 'Logout'];
 const apps = ['CV-Building', 'Feedback']
 
 export default function ResponsiveHeader() {
@@ -35,6 +35,11 @@ export default function ResponsiveHeader() {
         setUser(user);
     }, []);
 
+    const handleMenuOnClick = (event) => {
+        if (toLowerCase(event.target.innerText) === 'cv-builder') {
+            router.push('/cv-builder');
+        }
+    };
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -60,6 +65,8 @@ export default function ResponsiveHeader() {
             router.push('/login');
         } else if (event.target.innerText === 'Profile') {
             router.push('/profile');
+        } else if(event.target.innerText === 'Task Queue') {
+            router.push('/track');
         }
     };
 
@@ -121,7 +128,7 @@ export default function ResponsiveHeader() {
                                 }}
                             >
                                 {pages.map((page) => (
-                                    <MenuItem key={page} onClick={handleCloseNavMenu}>
+                                    <MenuItem key={page} onClick={handleMenuOnClick}>
                                         <Typography textAlign="center">{page}</Typography>
                                     </MenuItem>
                                 ))}
@@ -151,7 +158,7 @@ export default function ResponsiveHeader() {
                             {pages.map((page) => (
                                 <Button
                                     key={page}
-                                    onClick={handleCloseNavMenu}
+                                    onClick={handleMenuOnClick}
                                     sx={{ color: '#3b3b3b', display: 'block' }}
                                 >
                                     {page}
